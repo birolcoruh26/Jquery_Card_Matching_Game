@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        var message = "Right Click Disabled!";
+        function rtclickcheck(keyp) {
+        if (navigator.appName == "Netscape" && keyp.which == 3) {
+        alert(message);
+        return false;
+        }
+        if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) {
+        alert(message); return false;
+        }
+        }
+        document.onmousedown = rtclickcheck;
+   
+        function check(form)
+        {
+            if(form.username.value == "admin" && form.password.value == "123")
+            {
+                window.location.replace("js4oyun.html");
+               return false;
+            } else
+            {
+                alert("Username Or Password Doesn't Match!");
+               return false;
+            }
+        }
+     </script>
+</head>
+<body>
+    <div class="form-box">
+        <div class="head">LOGIN</div>
+        <div id="textbox">
+           <form onsubmit="return check(this);">
+              <input type="text" placeholder="Username" name="username">
+              <br>
+              <input type="password" placeholder="Password" name="password">
+              <br>
+              <input type="submit" name="btn_submit" value="Login">
+           </form>
+        </div>
+     </div>
+      </form>
+   
+</body>
+</html>

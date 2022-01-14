@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="js4Oyun.css">
+    <title>Js 4 Oyun</title>
+    <script
+                  src="https://code.jquery.com/jquery-3.6.0.js"
+                  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+                  crossorigin="anonymous"></script>
+                  
+</head>
+<body>
+    <main>
+        
+        <section><p class="hideP" ></p></section>
+        <section><p class="hideP" ></p></section>
+        <section><p class="hideP" ></p></section>
+        <section><p class="hideP" ></p></section>
+        <section><p class="hideP" ></p></section>
+        <section><p class="hideP" ></p></section>
+        <section><p class="hideP" ></p></section>
+        <section><p class="hideP" ></p></section>
+        <section><p class="hideP" ></p></section>
+        <section><p class="hideP" ></p></section>
+        
+    </main>
+    <section class="puan"> <p id="a1">1000 </p></section>
+    <script>
+//////////******jquery
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
+// Used like so
+var arr = [2, 11, 37, 42];
+shuffle(arr);
+console.log(arr);
+       
+        $(document).ready(function(){
+            var elemanlar = $("section p");
+            let sayılar = [1,1,2,2,3,3,4,4,5,5]
+            shuffle(sayılar);
+            for (let i = 0; i < sayılar.length; i++) {
+            elemanlar[i].innerHTML = String(sayılar[i]);
+        }
+             
+            
+           
+          
+            
+            let tiklamaSayisi = 0;
+            let puan = 1000;
+            let s1 = Number();
+            let s2 = Number();
+            let s1element = null;
+            let s2element = null;
+
+            $("section").click(function()
+            {
+                
+                tiklamaSayisi++;
+                if(tiklamaSayisi==1)
+                {
+                    $(this).children("p").show();
+                    s1 = $(this).children("p").text();
+                    s1element = $(this);
+                    console.log(s1element);
+                }
+                else if(tiklamaSayisi==2)
+                { 
+                    tiklamaSayisi=0;
+                    $(this).children("p").show();
+                    s2 = $(this).children("p").text();
+                    s2element = $(this);
+                    if(s1==s2)
+                    {
+                        s1element.children("p").removeClass("hideP");
+                        s1element.children("p").addClass("showP");
+                        s2element.children("p").removeClass("hideP");
+                        s2element.children("p").addClass("showP");
+                    }
+                    else 
+                    {
+                       s1element.css("background-color", "red");
+                       s2element.css("background-color", "red");
+                        puan = puan -20;  
+                        $('#a1').text(puan)
+                        console.log(puan);
+                    }
+                    var elementler = $('p.hideP').fadeOut();
+                  
+                    
+                }
+                
+                setTimeout(function(){
+                    s1element.css("background-color", "lightblue");
+                    s2element.css("background-color", "lightblue");
+                },300); 
+
+                 
+            });
+        });
+       
+    </script>
+</body>
+</html>
